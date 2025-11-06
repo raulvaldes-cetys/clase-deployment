@@ -31,8 +31,7 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
   res.status(err.status || 500).json({
     success: false,
-    message: err.message || 'Error interno del servidor',
-    error: process.env.NODE_ENV === 'development' ? err : {}
+    message: err.message || 'Error interno del servidor'
   });
 });
 
