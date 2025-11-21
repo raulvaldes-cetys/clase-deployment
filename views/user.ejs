@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Usuario - The Menu</title>
+</head>
+<body>
+  <h1>Detalles del Usuario</h1>
+  
+  <nav>
+    <a href="/">Inicio</a> | 
+    <a href="/users">Usuarios</a> | 
+    <a href="/register">Registrar</a> | 
+    <a href="/login">Login</a>
+  </nav>
+
+  <h2><%= user.firstName %> <%= user.lastName %></h2>
+  
+  <table border="1">
+    <tr>
+      <th>ID de Usuario</th>
+      <td><%= user.userId %></td>
+    </tr>
+    <tr>
+      <th>Nombre</th>
+      <td><%= user.firstName %></td>
+    </tr>
+    <tr>
+      <th>Apellido</th>
+      <td><%= user.lastName %></td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td><%= user.email %></td>
+    </tr>
+    <tr>
+      <th>Fecha de Registro</th>
+      <td><%= new Date(user.createdAt).toLocaleString() %></td>
+    </tr>
+  </table>
+
+  <p>
+    <a href="/user/<%= user.userId %>/edit">Editar Usuario</a> | 
+    <a href="/users">Volver a la lista</a>
+  </p>
+
+  <form method="POST" action="/user/<%= user.userId %>/delete" onsubmit="return confirm('¿Estás seguro de eliminar este usuario?');">
+    <button type="submit">Eliminar Usuario</button>
+  </form>
+</body>
+</html>
+

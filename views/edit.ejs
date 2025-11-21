@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Editar Usuario - The Menu</title>
+</head>
+<body>
+  <h1>Editar Usuario</h1>
+  
+  <nav>
+    <a href="/">Inicio</a> | 
+    <a href="/users">Usuarios</a> | 
+    <a href="/register">Registrar</a> | 
+    <a href="/login">Login</a>
+  </nav>
+
+  <% if (error) { %>
+    <p>Error: <%= error %></p>
+  <% } %>
+
+  <% if (success) { %>
+    <p>Éxito: <%= success %></p>
+  <% } %>
+
+  <form method="POST" action="/user/<%= user.userId %>/edit">
+    <div>
+      <label>ID de Usuario:</label>
+      <input type="text" name="userId" value="<%= user.userId %>" disabled>
+      <small>(No se puede cambiar)</small>
+    </div>
+    <div>
+      <label>Nombre:</label>
+      <input type="text" name="firstName" value="<%= user.firstName %>">
+    </div>
+    <div>
+      <label>Apellido:</label>
+      <input type="text" name="lastName" value="<%= user.lastName %>">
+    </div>
+    <div>
+      <label>Email:</label>
+      <input type="email" name="email" value="<%= user.email %>">
+    </div>
+    <div>
+      <label>Nueva Contraseña (dejar vacío para no cambiar):</label>
+      <input type="password" name="password">
+    </div>
+    <div>
+      <button type="submit">Guardar Cambios</button>
+      <a href="/user/<%= user.userId %>">Cancelar</a>
+    </div>
+  </form>
+</body>
+</html>
+

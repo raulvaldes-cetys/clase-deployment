@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registrar Usuario - The Menu</title>
+</head>
+<body>
+  <h1>Registrar Nuevo Usuario</h1>
+  
+  <nav>
+    <a href="/">Inicio</a> | 
+    <a href="/users">Usuarios</a> | 
+    <a href="/register">Registrar</a> | 
+    <a href="/login">Login</a>
+  </nav>
+
+  <% if (error) { %>
+    <p>Error: <%= error %></p>
+  <% } %>
+
+  <% if (success) { %>
+    <p>Éxito: <%= success %></p>
+  <% } %>
+
+  <form method="POST" action="/register">
+    <div>
+      <label>ID de Usuario:</label>
+      <input type="text" name="userId" required>
+    </div>
+    <div>
+      <label>Nombre:</label>
+      <input type="text" name="firstName" required>
+    </div>
+    <div>
+      <label>Apellido:</label>
+      <input type="text" name="lastName" required>
+    </div>
+    <div>
+      <label>Email:</label>
+      <input type="email" name="email" required>
+    </div>
+    <div>
+      <label>Contraseña:</label>
+      <input type="password" name="password" required>
+    </div>
+    <div>
+      <button type="submit">Registrar</button>
+    </div>
+  </form>
+
+  <p><a href="/login">¿Ya tienes cuenta? Inicia sesión</a></p>
+</body>
+</html>
+

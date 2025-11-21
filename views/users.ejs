@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Usuarios - The Menu</title>
+</head>
+<body>
+  <h1>Lista de Usuarios</h1>
+  
+  <nav>
+    <a href="/">Inicio</a> | 
+    <a href="/users">Usuarios</a> | 
+    <a href="/register">Registrar</a> | 
+    <a href="/login">Login</a>
+  </nav>
+
+  <p><a href="/register">Registrar nuevo usuario</a></p>
+
+  <% if (error) { %>
+    <p>Error: <%= error %></p>
+  <% } %>
+
+  <% if (users && users.length > 0) { %>
+    <table border="1">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Email</th>
+        <th>Acciones</th>
+      </tr>
+      <% users.forEach(user => { %>
+        <tr>
+          <td><%= user.userId %></td>
+          <td><%= user.firstName %></td>
+          <td><%= user.lastName %></td>
+          <td><%= user.email %></td>
+          <td>
+            <a href="/user/<%= user.userId %>">Ver</a> | 
+            <a href="/user/<%= user.userId %>/edit">Editar</a>
+          </td>
+        </tr>
+      <% }); %>
+    </table>
+  <% } else { %>
+    <p>No hay usuarios registrados.</p>
+  <% } %>
+</body>
+</html>
+

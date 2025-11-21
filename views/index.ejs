@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Menu - Inicio</title>
+</head>
+<body>
+  <h1>The Menu API</h1>
+  
+  <nav>
+    <a href="/">Inicio</a> | 
+    <a href="/users">Usuarios</a> | 
+    <a href="/register">Registrar</a> | 
+    <a href="/login">Login</a>
+  </nav>
+
+  <h2>Bienvenido</h2>
+  <p>API de The Menu - Sistema de pedidos de comida en línea</p>
+
+  <% if (users && users.length > 0) { %>
+    <h3>Últimos usuarios registrados:</h3>
+    <ul>
+      <% users.forEach(user => { %>
+        <li>
+          <a href="/user/<%= user.userId %>"><%= user.firstName %> <%= user.lastName %></a> 
+          (<%= user.email %>)
+        </li>
+      <% }); %>
+    </ul>
+    <p><a href="/users">Ver todos los usuarios</a></p>
+  <% } else { %>
+    <p>No hay usuarios registrados aún.</p>
+    <p><a href="/register">Registrar primer usuario</a></p>
+  <% } %>
+
+  <% if (error) { %>
+    <p>Error: <%= error %></p>
+  <% } %>
+</body>
+</html>
+

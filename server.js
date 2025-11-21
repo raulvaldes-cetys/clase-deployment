@@ -2,30 +2,24 @@ require('dotenv').config();
 const express = require('express');
 const connectDB = require('./config/db');
 const userRoutes = require('./routes/userRoutes');
+const viewRoutes = require('./routes/viewRoutes');
 
 connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.set('view engine', 'ejs');
+app.set('views', './views');
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/users', userRoutes);
-
-app.get('/', (req, res) => {
-  res.json({
-    success: true,
-    message: 'La API de The Menu está en ejecución',
-    version: '1.0.0'
-  });
-});
+app.use('/', viewRoutes);
 
 app.use((req, res) => {
-  res.status(404).json({
-    success: false,
-    message: 'Ruta no encontrada'
-  });
+  res.status(404).render('error', { message: 'Ruta no encontrada' });
 });
 
 app.use((err, req, res, next) => {
@@ -36,5 +30,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`El servidor está ejecutándose en el puerto ${PORT}`);
+  console.log(`El servidor está ejecutándose en http://localhost:${PORT}`);
 });
